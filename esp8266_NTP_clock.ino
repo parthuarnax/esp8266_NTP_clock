@@ -21,7 +21,6 @@ void setup() {
     delay(500);
     Serial.print(".");
   }
-  timeClient.begin(); //If connected, start the NTPClient object “timeClient” created in advance.
   //If you want to use a specific port to use UDP, 
   //provide the port number as an argument like timeClient.begin(port).
   //I'll just use the defaults with no arguments.
@@ -31,11 +30,15 @@ void setup() {
   //timeClient.getMinutes()
   //timeClient.getSeconds()
   //timeClient.getFormattedTime()
+  timeClient.begin(); //If connected, start the NTPClient object “timeClient” created in advance.
   timeClient.update();
   Serial.println(timeClient.getFormattedTime());
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  delay(1000);
+  Serial.println(timeClient.getFormattedTime());
+  //1초마다 같은 양식으로 시간을 출력
+  //셋업에서 한 번 시간 정보를 업데이트한 후
+  //한 시간마다 업데이트(배터리 관리 및 자원 관리에 도움)
 }
